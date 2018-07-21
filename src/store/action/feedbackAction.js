@@ -15,18 +15,18 @@ export function feedBackHandler(feedBackDetails){
 }
 
 
-export function bookingHandler(bookingDetails){
+// export function bookingHandler(bookingDetails){
     
-    return (dispatch) =>   {
-        fireApp.database().ref("bookings")
-        .child(bookingDetails.bookingPlace).child("Booked")
-        .push(bookingDetails)
-        .then(() => dispatch ({
-            type: "BOOKING",
-            payload: {...bookingDetails}
-        })).catch(error => console.log("errr is : ", error))
+//     return (dispatch) =>   {
+//         fireApp.database().ref("bookings")
+//         .child(bookingDetails.bookingPlace).child("Booked")
+//         .push(bookingDetails)
+//         .then(() => dispatch ({
+//             type: "BOOKING",
+//             payload: {...bookingDetails}
+//         })).catch(error => console.log("errr is : ", error))
         
-    }
-}
+//     }
+// }
 
 

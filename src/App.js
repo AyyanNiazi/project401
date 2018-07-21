@@ -1,46 +1,51 @@
 import React from 'react';
-import {Router , Link, Switch, Route} from 'react-router-dom'
-import createHistory from "history/createBrowserHistory";
-import store from './store/index'
-import {fireApp} from './component/config/firebase'
-import {login , logout} from './store/action/userAuthAction'
-import AppHeader from './container/AppHeader'
+import {BrowserRouter as Router ,  Route} from 'react-router-dom'
+import {auth,database} from './component/config/firebase'
+import Home from './container/home'
+import UserList from './container/dashboard/adminRights/userList'
 import Signup from './component/userLogin/signup'
-import Login from './component/userLogin/login'
 import UserDashboard from './container/dashboard/userDashboard'
 import AdminDashboard from './container/dashboard/adminDashboard'
-import BookParking from './container/dashboard/aboutBooking/bookParking'
-import viewBooking from './container/dashboard/aboutBooking/viewBooking';
-import UserList from './container/dashboard/adminRights/viewUsers';
-import FeedBack from './container/dashboard/feedBack';
-import ViewFeedBack from './container/dashboard/adminRights/viewFeedBack';
+import FeedBack from './container/dashboard/feedBack'
+import viewCrime from './container/dashboard/aboutCrime/viewBooking'
+import AddCrime from './container/dashboard/aboutCrime/addCrime'
+import ViewFeedback from './container/dashboard/adminRights/viewFeedback'
 
-
-const history = createHistory();
 
 class App extends React.Component {
+
+  constructor(){
+    super()
+    this.state={
+      user:null,
+    }
+
+   }
+
+
+componentDidMount(){
+   auth.onAuthStateChanged(()=>{
+     
+     this.setState({
+         user: auth.currentUser
+     })
+   })
+ }
   render() {
     return (
       <div>
-        <Router history={history}  >
+        <Router  createHistory="history">
         <div>
-          <div>
-            <AppHeader/>
-          </div>
-            <div>
-            <Switch>
-            <Route path='/' exact omponent={AppHeader} />
-            <Route path='/signup' exact component={Signup}/>
-            <Route path='/login' exact component={Login}/>
-            <Route path='/userDashboard' exact component={UserDashboard}/>
-            <Route path='/adminDashboard' exact component={AdminDashboard}/>
-            <Route path='/userDashboard/bookParking' exact component={BookParking}/>
-            <Route path='/userDashboard/viewParking' exact component={viewBooking}/>
-            <Route path='/adminDashboard/adminRights/userList' exact component={UserList}/>
-            <Route path='/userDashboard/feedBack' exact component={FeedBack}/>
-            <Route path='/adminDashboard/viewFeedBack' exact component={ViewFeedBack}/>
-            </Switch>           
-          </div>
+
+            <Route path='/' exact component={Home} />
+            <Route path='/signup'  component={Signup}/>
+            <Route path='/userDashboard'  component={UserDashboard}/>
+            <Route path='/adminDashboard'  component={AdminDashboard}/>
+            <Route path='/user/sendFeedback'  component={FeedBack}/>
+            <Route path="/user/addCrime"  component={AddCrime} />
+            <Route path="/User/viewCrime"    component={viewCrime}/>
+            <Route path="/admin/viewFeedback"    component={ViewFeedback}/>
+            <Route path="/admin/users"    component={UserList}/>
           </div>
           
         </Router>

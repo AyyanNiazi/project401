@@ -1,27 +1,17 @@
-import {fireApp,database,auth,POST} from '../../component/config/firebase'
-import {detach} from 'axios'
+import {fireApp,database,auth} from '../../component/config/firebase'
+// import {detach} from 'axios'
 
-
-
-
-export function bookingHandler(){
+export function bookingHandler(bookingDetails){
 
     return (dispatch) =>  {
-
-            database.ref('child').on('value', snapshot => {
-            dispatch({
-                type:'BOOKINGS',
-                payload: snapshot.val()
-            })
-        })
-        // console.log('database')
-        // database.ref("bookings")
-        // .child(bookingDetails).child("Booked")
-        // .push(bookingDetails)
-        // .then(() => dispatch ({
-        //     type: "BOOKINGS",
-        //     payload: {...bookingDetails}
-        // })).catch(error => console.log("error is : ", error))
+       console.log('database')
+        database.ref()
+        .child('crime/')
+        .push(bookingDetails)
+        .then( (res) => dispatch ({
+            type: "BOOKINGS",
+            payload: {...bookingDetails}
+        }, console.log ("success"))).catch(error => console.log("error is : ", error))
         
     }
 }
@@ -29,10 +19,10 @@ export function bookingHandler(){
 
 
 
-export const bookedParkingFinal  = () => {
-    return (dispatch) => {
-      return database().ref('bookings').on('value', (snapshot) => {
-        dispatch(snapshot.val())
-      });
-    }
-  }
+// export const bookedParkingFinal  = () => {
+//     return (dispatch) => {
+//       return database().ref('bookings').on('value', (snapshot) => {
+//         dispatch(snapshot.val())
+//       });
+//     }
+//   }

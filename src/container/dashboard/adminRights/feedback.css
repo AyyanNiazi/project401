@@ -1,0 +1,13 @@
+.paper{
+    width: 100%;
+    text-align: center;
+    /* margin: 5; */
+    font-size: 24px;
+    display: inline-block
+}
+
+H2{
+    display: inline-block;
+    color: grey;
+    
+}

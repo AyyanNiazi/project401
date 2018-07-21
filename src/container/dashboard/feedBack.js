@@ -37,7 +37,8 @@ class FeedBack extends React.Component{
                     <label>
                         FeedBack
                     </label>
-                    <input type="textarea"
+                    <textarea
+                    rows='5' cols='40'
                     value={this.state.feedback}
                     onChange={e  => this.setState({feedback: e.target.value})}
                     />
@@ -60,10 +61,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch)  => {
     return {  
             feedBackSubmit : (feedBackDetails) =>
-             dispatch ({
-                 type: "FEEDBACK",
-                 payload: feedBackDetails
-             })
+             dispatch ( feedBackHandler(feedBackDetails))
     }
 }
 

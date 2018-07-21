@@ -11,7 +11,7 @@ const bookingReducer = (state = initialState, action ) => {
     switch (action.type) {
       // booking reducers
       case "BOOKINGS":
-        console.log('logss')
+        console.log('booking Reducer log', action.payload)
         setNewState.booking.push(action.payload);
         break;
         //user arra reducer
@@ -20,6 +20,7 @@ const bookingReducer = (state = initialState, action ) => {
         break;
         // feedback
       case "FEEDBACK":
+        console.log("feed back reducer log",action.payload);
          setNewState.feedback.push(action.payload);
          break;
          

@@ -16,18 +16,6 @@ import * as firebase  from 'firebase'
   var storage = firebase.storage();
   var auth = firebase.auth();
 console.log('fb')
-  database.ref().child('bookings').child("bookedPlace")
-  .once('value')
-  .then((snapshot => {
-    const bookedParking = [];
-
-    snapshot.forEach((childSnapshot) => {
-      bookedParking.push({
-        id: childSnapshot.key,
-        ...childSnapshot.val()
-      });
-    });
-  })).catch(error => console.log('Error:', error));
 
 
   export {
